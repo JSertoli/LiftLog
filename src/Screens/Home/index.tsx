@@ -2,18 +2,15 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import PrimaryButton from '../../Components/Buttons/primaryButton';
 
-const Home: React.FC = () => {
-  const handleCreateWorkout = () => {
-    console.log('Botão de criar treino pressionado!');
-    // Aqui você pode navegar para outra tela ou executar qualquer lógica adicional.
-  };
-
+const Home: React.FC<any> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
         <Text style={styles.highlight}>Lift</Text>Log
       </Text>
-      <PrimaryButton title='Criar treino' onPress={handleCreateWorkout}/>
+      <PrimaryButton title='Criar treino' onPress={() => {
+        navigation.navigate("EnterInfos")
+      }}/>
     </View>
   );
 };
