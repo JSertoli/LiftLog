@@ -8,7 +8,7 @@ const Home: React.FC<any> = ({ navigation }) => {
       <Text style={styles.title}>
         <Text style={styles.highlight}>Lift</Text>Log
       </Text>
-      <PrimaryButton title='Criar treino' onPress={() => {
+      <PrimaryButton title='Criar treino' onLoad={false} onPress={() => {
         navigation.navigate("EnterInfos")
       }}/>
     </View>

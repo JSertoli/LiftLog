@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 interface DropdownComponentProps {
   label: string;
   data: Array<{ label: string; value: string }>;
   labelColor: string;
   borderColor: string;
+  icon: React.ReactNode; // Tipo para aceitar um ícone como parâmetro
   onChange: (item: {
     label: string;
     value: string;
@@ -19,6 +19,7 @@ const DropdownComponent: React.FC<DropdownComponentProps> = ({
   label,
   labelColor,
   borderColor,
+  icon,
   onChange
 }) => {
   const [value, setValue] = useState<string>("");
@@ -26,9 +27,7 @@ const DropdownComponent: React.FC<DropdownComponentProps> = ({
 
   const renderLabel = () => {
     return (
-      <Text style={[styles.label, { color: labelColor }]}>
-        {label}
-      </Text>
+      <Text style={[styles.label, { color: labelColor }]}>{label}</Text>
     );
   };
 
@@ -43,6 +42,7 @@ const DropdownComponent: React.FC<DropdownComponentProps> = ({
         iconStyle={styles.iconStyle}
         itemContainerStyle={styles.itemContainerStyle}
         itemTextStyle={styles.itemTextStyle}
+        activeColor="gray"
         data={data}
         search
         maxHeight={300}
@@ -59,12 +59,9 @@ const DropdownComponent: React.FC<DropdownComponentProps> = ({
           setIsFocus(false);
         }}
         renderLeftIcon={() => (
-          <MaterialCommunityIcons
-            style={styles.icon}
-            color={isFocus ? "white" : borderColor}
-            name="weight-lifter"
-            size={20}
-          />
+          <View style={styles.iconContainer}>
+            {icon}
+          </View>
         )}
       />
     </View>
@@ -84,9 +81,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 8,
-    backgroundColor: "black", 
+    backgroundColor: "black",
   },
-  icon: {
+  iconContainer: {
     marginRight: 5,
   },
   label: {
@@ -97,32 +94,29 @@ const styles = StyleSheet.create({
     zIndex: 999,
     paddingHorizontal: 8,
     fontSize: 14,
-    color: "white", // Texto branco para tema dark
+    color: "white",
   },
   placeholderStyle: {
     fontSize: 16,
-    color: "#aaaaaa", // Placeholder em cinza claro
+    color: "#aaaaaa",
   },
   selectedTextStyle: {
     fontSize: 16,
-    color: "white", // Texto selecionado em branco
+    color: "white",
   },
   iconStyle: {
     width: 20,
     height: 20,
   },
   inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
-    color: "white", // Texto branco no campo de busca
-    backgroundColor: "black", // Fundo preto no campo de busca
+    color: "white",
+    backgroundColor: "black",
   },
   itemContainerStyle: {
-    backgroundColor: "black", // Fundo preto nos itens
+    backgroundColor: "black",
   },
   itemTextStyle: {
-    color: "white", // Texto branco nos itens
+    color: "white",
     fontSize: 16,
   },
 });
-

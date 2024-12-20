@@ -1,16 +1,37 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 
 interface PrimaryButtonProps {
   title: string;
+  onLoad: boolean;
   onPress: () => void;
+  disabled: boolean;
 }
 
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({ title, onPress }) => {
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({
+  title,
+  onLoad,
+  onPress,
+  disabled
+}) => {
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={styles.buttonText}>{title}</Text>
+      <TouchableOpacity
+        style={[styles.button, disabled && styles.disabledButton]} 
+        onPress={onPress}
+        disabled={disabled}
+      >
+        {onLoad ? (
+          <ActivityIndicator size="large" color="#FFFFFF" />
+        ) : (
+          <Text style={[styles.buttonText, disabled && styles.disabledText]}>{title}</Text> // Apply disabled text style
+        )}
       </TouchableOpacity>
     </View>
   );
@@ -35,9 +56,16 @@ const styles = StyleSheet.create({
     elevation: 5,
     width: "100%",
   },
+  disabledButton: {
+    backgroundColor: "#d3d3d3", 
+    elevation: 0, 
+  },
   buttonText: {
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  disabledText: {
+    color: "#a9a9a9", 
   },
 });
