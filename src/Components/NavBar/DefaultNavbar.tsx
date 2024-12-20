@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
         height: 64,
         width: "100%",
         backgroundColor: "#000",
-        justifyContent: "center"
+        justifyContent: "center",
+        marginBottom: 36
     },
     backArrow: {
         paddingLeft: 16
