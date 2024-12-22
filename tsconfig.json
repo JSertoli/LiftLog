@@ -4,7 +4,6 @@
     "strict": true
   },
   "include": [
-    "env.d.ts",
     "src/**/*"
   ]
 }

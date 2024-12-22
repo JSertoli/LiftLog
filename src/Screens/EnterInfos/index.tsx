@@ -27,7 +27,7 @@ const EnterInfos: React.FC = ({ navigation }: any) => {
 
   const dataTrainingGoal = [
     { label: "Emagrecer", value: "emagrecer" },
-    { label: "Ganhar massa múscular", value: "ganhar massa múscular" },
+    { label: "Ganhar massa muscular", value: "ganhar massa muscular" },
     { label: "Resistência", value: "resistência" },
     { label: "Força", value: "força" },
   ];
