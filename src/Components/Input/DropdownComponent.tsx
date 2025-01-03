@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Keyboard, StyleSheet, Text, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 
 interface DropdownComponentProps {
@@ -51,7 +51,7 @@ const DropdownComponent: React.FC<DropdownComponentProps> = ({
         placeholder={!isFocus ? "Selecione um item" : "..."}
         searchPlaceholder="Buscar..."
         value={value}
-        onFocus={() => setIsFocus(true)}
+        onFocus={() => {setIsFocus(true); Keyboard.dismiss()}}
         onBlur={() => setIsFocus(false)}
         onChange={(item) => {
           onChange(item);

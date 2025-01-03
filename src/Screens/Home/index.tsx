@@ -10,7 +10,7 @@ const Home: React.FC<any> = ({ navigation }) => {
       </Text>
       <PrimaryButton title='Criar treino' onLoad={false} onPress={() => {
         navigation.navigate("EnterInfos")
-      }}/>
+      }} disabled={false}/>
     </View>
   );
 };

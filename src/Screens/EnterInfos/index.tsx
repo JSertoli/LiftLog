@@ -15,6 +15,8 @@ const EnterInfos: React.FC = ({ navigation }: any) => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  var response: string;
+
   const data = [
     { label: "1 dia", value: "1" },
     { label: "2 dias", value: "2" },
@@ -94,12 +96,14 @@ const EnterInfos: React.FC = ({ navigation }: any) => {
             try {
               setLoading(true);
               Keyboard.dismiss();
-              await EnterInfosController.generateTraining(weight, height, workoutTimes, trainingGoal);
+              response = await EnterInfosController.generateTraining(weight, height, workoutTimes, trainingGoal);
             }  catch (err) {
               console.log(err);
             } finally {
               setLoading(false);
-              // navigation.navigate("Result");
+              navigation.navigate("Result", {
+                message: response
+              });
             }
           }}
         />
