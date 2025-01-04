@@ -5,7 +5,7 @@ class EnterInfosController {
     trainingsByWeak: string,
     trainingGoal: string
   ) {
-    const prompt = `Crie um cronograma de treino de academia para uma pessoa que pesa ${weight} kg, com ${height} cm de altura, que pretende treinar ${trainingsByWeak} vezes por semana com o objetivo de ${trainingGoal}`;
+    const prompt = `Crie um cronograma de treino de academia para uma pessoa que pesa ${weight} kg, com ${height} cm de altura, que pretende treinar ${trainingsByWeak} vezes por semana com o objetivo de ${trainingGoal}. Retorne somente o treino de cada dia, nada além disso!`;
     var apiResponse = "";
 
     await fetch("https://api.openai.com/v1/chat/completions", {
@@ -24,6 +24,8 @@ class EnterInfosController {
           },
         ],
         temperature: 0.7,
+        max_tokens: 500,
+        top_p: 1,
       }),
     })
       .then((response) => response.json())
@@ -35,9 +37,8 @@ class EnterInfosController {
         console.error("Error making request:", error.message, error.stack);
         return "Erro ao gerar resposta!";
       });
-      return apiResponse;
+    return apiResponse;
   }
-
 }
 
 export default EnterInfosController;
